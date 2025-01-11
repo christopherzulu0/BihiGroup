@@ -3,6 +3,8 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { Facebook, Linkedin, Twitter } from 'lucide-react'
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 
 const footerLinks = [
   { title: "Quick Links", links: [
@@ -20,9 +22,9 @@ const footerLinks = [
 ]
 
 const socialLinks = [
-  { icon: Facebook, href: "#" },
-  { icon: Twitter, href: "#" },
-  { icon: Linkedin, href: "#" },
+  { icon: Facebook, href: "#", label: "Facebook" },
+  { icon: Twitter, href: "#", label: "Twitter" },
+  { icon: Linkedin, href: "#", label: "LinkedIn" },
 ]
 
 export function SiteFooter() {
@@ -40,6 +42,17 @@ export function SiteFooter() {
               Leading provider of innovative solutions for businesses worldwide. We help
               organizations transform, grow, and succeed in today's dynamic market.
             </p>
+            <form className="mt-4">
+              <h4 className="text-white text-sm font-semibold mb-2">Subscribe to our newsletter</h4>
+              <div className="flex">
+                <Input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="bg-gray-800 text-white border-gray-700 focus:border-primary"
+                />
+                <Button type="submit" className="ml-2">Subscribe</Button>
+              </div>
+            </form>
           </motion.div>
           {footerLinks.map((section, index) => (
             <motion.div
@@ -81,7 +94,7 @@ export function SiteFooter() {
                   whileHover={{ scale: 1.2 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
-                  <Link href={social.href} className="hover:text-white transition-colors">
+                  <Link href={social.href} className="hover:text-white transition-colors" aria-label={social.label}>
                     <social.icon className="h-6 w-6" />
                   </Link>
                 </motion.div>

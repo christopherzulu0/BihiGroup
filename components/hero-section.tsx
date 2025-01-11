@@ -1,13 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { ChevronRight, Play, ChevronDown } from 'lucide-react'
-// import { VideoModal } from "@/components/video-modal"
 
 export function HeroSection() {
-  // const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
 
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -58,7 +58,7 @@ export function HeroSection() {
               variant="ghost" 
               size="lg" 
               className="text-white hover:bg-white/10 mt-4 sm:mt-0"
-              // onClick={() => setIsVideoModalOpen(true)}
+              onClick={() => setIsVideoModalOpen(true)}
             >
               <Play className="mr-2 h-4 w-4" />
               Watch Video
@@ -73,10 +73,34 @@ export function HeroSection() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1, duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
       >
-        <ChevronDown className="h-8 w-8 text-white" />
+        <ChevronDown className="h-8 w-8 text-white animate-bounce" />
       </motion.div>
 
-      {/* <VideoModal isOpen={isVideoModalOpen} onClose={() => setIsVideoModalOpen(false)} /> */}
+      <AnimatePresence>
+        {isVideoModalOpen && (
+          <Dialog open={isVideoModalOpen} onOpenChange={setIsVideoModalOpen}>
+            <DialogContent className="sm:max-w-[800px]">
+              <DialogHeader>
+                <DialogTitle>BihiGroup: Transforming Industries</DialogTitle>
+                <DialogDescription>
+                  Watch our video to learn more about how we're driving innovation across sectors.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="aspect-video">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ"
+                  title="BihiGroup Video"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </DialogContent>
+          </Dialog>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

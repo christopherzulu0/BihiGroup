@@ -39,39 +39,41 @@ export function TestimonialsCarousel() {
   }
 
   return (
-    <div className="relative">
-      <Card className="max-w-2xl mx-auto mt-6">
+    <div className="relative max-w-4xl mx-auto px-4 py-12">
+      <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 shadow-lg">
         <CardContent className="pt-12 pb-8 px-8 text-center">
-          <div className="mb-4">
+          <div className="mb-6">
             <Image
               src={testimonials[currentIndex].image}
               alt={testimonials[currentIndex].name}
               width={100}
               height={100}
-              className="rounded-full mx-auto"
+              className="rounded-full mx-auto border-4 border-white shadow-md"
             />
           </div>
-          <blockquote className="text-lg mb-4">"{testimonials[currentIndex].testimonial}"</blockquote>
-          <cite className="font-semibold">{testimonials[currentIndex].name}</cite>
-          <p className="text-sm text-muted-foreground">{testimonials[currentIndex].company}</p>
+          <blockquote className="text-lg md:text-xl mb-6 text-gray-700 italic">"{testimonials[currentIndex].testimonial}"</blockquote>
+          <cite className="font-semibold text-blue-600">{testimonials[currentIndex].name}</cite>
+          <p className="text-sm text-gray-500">{testimonials[currentIndex].company}</p>
         </CardContent>
       </Card>
-      <Button
-        variant="ghost"
-        size="icon"
-        className="absolute top-1/2 left-0 transform -translate-y-1/2"
-        onClick={prevTestimonial}
-      >
-        <ChevronLeft className="h-6 w-6" />
-      </Button>
-      <Button
-        variant="ghost"
-        size="icon"
-        className="absolute top-1/2 right-0 transform -translate-y-1/2"
-        onClick={nextTestimonial}
-      >
-        <ChevronRight className="h-6 w-6" />
-      </Button>
+      <div className="flex justify-center mt-6 space-x-4">
+        <Button
+          variant="outline"
+          size="icon"
+          className="rounded-full hover:bg-blue-100"
+          onClick={prevTestimonial}
+        >
+          <ChevronLeft className="h-6 w-6" />
+        </Button>
+        <Button
+          variant="outline"
+          size="icon"
+          className="rounded-full hover:bg-blue-100"
+          onClick={nextTestimonial}
+        >
+          <ChevronRight className="h-6 w-6" />
+        </Button>
+      </div>
     </div>
   )
 }
