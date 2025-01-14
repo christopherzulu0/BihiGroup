@@ -4,15 +4,15 @@ import { CheckCircle, Building2 } from 'lucide-react'
 
 export default function BusinessConsultingPage() {
   return (
-    <div className="container px-4 py-12 md:py-24">
+    <div className="container px-4 py-8 sm:py-12 md:py-24">
       <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
-        <h1 className="text-4xl md:text-5xl font-bold mb-6">Business Consulting</h1>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">Business Consulting</h1>
         <p className="text-xl text-muted-foreground">
           Strategic guidance to optimize your business operations and drive growth
         </p>
       </div>
       
-      <div className="grid md:grid-cols-2 gap-12 items-center mb-16 md:mb-24">
+      <div className="grid sm:grid-cols-2 gap-8 sm:gap-12 items-center mb-12 sm:mb-16 md:mb-24">
         <div>
           <h2 className="text-3xl font-semibold mb-6">Transform Your Business</h2>
           <p className="text-lg mb-6 text-muted-foreground">

@@ -51,13 +51,13 @@ const newsItems = [
 
 export default function NewsPage() {
   return (
-    <div className="container py-24">
-      <h1 className="text-4xl font-bold mb-12 text-center">Latest News</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="container py-8 sm:py-12 md:py-16 lg:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 sm:mb-12 lg:mb-16 text-center">Latest News</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
         {newsItems.map((item, index) => (
-          <Card key={index} className="group hover:shadow-lg transition-all">
+          <Card key={index} className="group hover:shadow-lg transition-all flex flex-col">
             <CardHeader className="p-0">
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-48 sm:h-56 lg:h-64 overflow-hidden">
                 <Image
                   src={item.image}
                   alt={item.title}
@@ -66,27 +66,27 @@ export default function NewsPage() {
                 />
               </div>
             </CardHeader>
-            <CardContent className="p-6">
-              <div className="flex items-center text-sm text-muted-foreground mb-4">
-                <Calendar className="mr-2 h-4 w-4" />
+            <CardContent className="p-4 sm:p-6 lg:p-8 flex-grow">
+              <div className="flex items-center text-sm lg:text-base text-muted-foreground mb-3 sm:mb-4">
+                <Calendar className="mr-2 h-4 w-4 lg:h-5 lg:w-5" />
                 {new Date(item.date).toLocaleDateString()}
               </div>
-              <CardTitle className="mb-4">{item.title}</CardTitle>
-              <p className="text-muted-foreground">{item.excerpt}</p>
+              <CardTitle className="mb-3 sm:mb-4 text-lg sm:text-xl lg:text-2xl">{item.title}</CardTitle>
+              <p className="text-sm sm:text-base lg:text-lg text-muted-foreground">{item.excerpt}</p>
             </CardContent>
-            <CardFooter className="p-6 pt-0">
-              <Button variant="link" className="p-0" asChild>
+            <CardFooter className="p-4 sm:p-6 lg:p-8 pt-0">
+              <Button variant="link" className="p-0 text-sm sm:text-base lg:text-lg" asChild>
                 <Link href={`/news/${item.id}`}>
                   Read More
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  <ArrowRight className="ml-2 h-4 w-4 lg:h-5 lg:w-5" />
                 </Link>
               </Button>
             </CardFooter>
           </Card>
         ))}
       </div>
-      <div className="mt-12 text-center">
-        <Button size="lg">
+      <div className="mt-12 sm:mt-16 lg:mt-20 text-center">
+        <Button size="lg" className="text-base sm:text-lg lg:text-xl px-6 py-3 lg:px-8 lg:py-4">
           Load More News
         </Button>
       </div>

@@ -16,27 +16,27 @@ export default function AboutPage() {
   }
 
   return (
-    <div className="container px-4 py-12 md:py-24">
+    <div className="container px-4 py-8 sm:py-12 md:py-24">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="max-w-3xl mx-auto text-center mb-12 md:mb-16"
+        className="max-w-3xl mx-auto text-center mb-8 sm:mb-12 md:mb-16"
       >
-        <h1 className="text-4xl md:text-5xl font-bold mb-6">About BihiGroup</h1>
-        <p className="text-xl text-muted-foreground">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">About BihiGroup</h1>
+        <p className="text-lg sm:text-xl text-muted-foreground">
           Transforming businesses through innovative technology solutions since 2010
         </p>
       </motion.div>
 
-      <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center mb-16 md:mb-24">
+      <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center mb-12 sm:mb-16 md:mb-24">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <h2 className="text-3xl font-semibold mb-6">Our Story</h2>
-          <div className="space-y-4 text-lg">
+          <h2 className="text-2xl sm:text-3xl font-semibold mb-4 sm:mb-6">Our Story</h2>
+          <div className="space-y-4 text-base sm:text-lg">
             <p>
               Founded in 2010, BihiGroup has been at the forefront of technological innovation,
               helping businesses across various industries to thrive in the digital age.
@@ -90,16 +90,16 @@ export default function AboutPage() {
         </motion.div>
       </div>
 
-      <Tabs defaultValue="values" className="mb-16 md:mb-24">
+      <Tabs defaultValue="values" className="mb-12 sm:mb-16 md:mb-24">
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="values">Our Values</TabsTrigger>
           <TabsTrigger value="presence">Global Presence</TabsTrigger>
           <TabsTrigger value="leadership">Leadership</TabsTrigger>
         </TabsList>
         <TabsContent value="values">
-          <div className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 rounded-lg p-8 md:p-12">
-            <h2 className="text-3xl font-semibold mb-8 text-center">Our Core Values</h2>
-            <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+          <div className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 rounded-lg p-6 sm:p-8 md:p-12">
+            <h2 className="text-2xl sm:text-3xl font-semibold mb-6 sm:mb-8 text-center">Our Core Values</h2>
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
               {[
                 { title: "Innovation", description: "We constantly push the boundaries of what's possible in technology, striving to create solutions that are ahead of their time." },
                 { title: "Integrity", description: "We uphold the highest ethical standards in all our business practices, ensuring transparency and trust in every interaction." },
@@ -107,10 +107,10 @@ export default function AboutPage() {
               ].map((value) => (
                 <Card key={value.title} className="transition-all hover:shadow-lg">
                   <CardHeader>
-                    <CardTitle className="text-xl md:text-2xl">{value.title}</CardTitle>
+                    <CardTitle className="text-lg sm:text-xl md:text-2xl">{value.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-muted-foreground">{value.description}</p>
+                    <p className="text-sm sm:text-base text-muted-foreground">{value.description}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -119,8 +119,8 @@ export default function AboutPage() {
         </TabsContent>
         <TabsContent value="presence">
           <div className="text-center">
-            <h2 className="text-3xl font-semibold mb-8">Our Global Presence</h2>
-            <div className="relative rounded-lg overflow-hidden mb-8">
+            <h2 className="text-2xl sm:text-3xl font-semibold mb-6 sm:mb-8">Our Global Presence</h2>
+            <div className="relative rounded-lg overflow-hidden mb-6 sm:mb-8">
               <Image
                 src="/placeholder.svg?height=400&width=800"
                 alt="BihiGroup Global Offices"
@@ -129,7 +129,7 @@ export default function AboutPage() {
                 className="w-full h-auto"
               />
             </div>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
               With offices in over 30 countries, we provide localized expertise with a global perspective.
               Our international network allows us to serve clients across different time zones and cultural contexts,
               ensuring that we deliver solutions that are both globally competitive and locally relevant.
@@ -137,8 +137,8 @@ export default function AboutPage() {
           </div>
         </TabsContent>
         <TabsContent value="leadership">
-          <h2 className="text-3xl font-semibold mb-8 text-center">Meet Our Leadership</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <h2 className="text-2xl sm:text-3xl font-semibold mb-6 sm:mb-8 text-center">Meet Our Leadership</h2>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
             {[
               { name: "Jane Doe", title: "CEO", image: "/placeholder.svg?height=200&width=200" },
               { name: "John Smith", title: "CTO", image: "/placeholder.svg?height=200&width=200" },
@@ -153,8 +153,8 @@ export default function AboutPage() {
                     height={200}
                     className="rounded-full mx-auto mb-4"
                   />
-                  <h3 className="text-xl font-semibold">{leader.name}</h3>
-                  <p className="text-muted-foreground">{leader.title}</p>
+                  <h3 className="text-lg sm:text-xl font-semibold">{leader.name}</h3>
+                  <p className="text-sm sm:text-base text-muted-foreground">{leader.title}</p>
                 </CardContent>
               </Card>
             ))}
@@ -168,13 +168,16 @@ export default function AboutPage() {
         transition={{ duration: 0.5, delay: 0.6 }}
         className="text-center"
       >
-        <h2 className="text-3xl font-semibold mb-8">Ready to Transform Your Business?</h2>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+        <h2 className="text-2xl sm:text-3xl font-semibold mb-4 sm:mb-6">Ready to Transform Your Business?</h2>
+        <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-6 sm:mb-8">
           Discover how BihiGroup can help you leverage cutting-edge technology to drive growth,
           increase efficiency, and stay ahead of the competition.
         </p>
-        <Button size="lg">Schedule a Consultation</Button>
+        <Button size="lg">
+          Schedule a Consultation
+        </Button>
       </motion.div>
     </div>
   )
 }
+

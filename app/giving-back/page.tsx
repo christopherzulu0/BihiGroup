@@ -4,19 +4,19 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 export default function GivingBackPage() {
   return (
-    <div className="container px-4 py-12 md:py-24">
-      <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
-        <h1 className="text-4xl md:text-5xl font-bold mb-6">Giving Back to Our Community</h1>
-        <p className="text-xl text-muted-foreground">
+    <div className="container px-4 py-8 sm:py-12 md:py-24">
+      <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12 md:mb-16">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">Giving Back to Our Community</h1>
+        <p className="text-lg sm:text-xl text-muted-foreground">
           At BihiGroup, we believe in the power of technology to create positive change in the world.
           Our commitment to social responsibility drives us to make a meaningful impact beyond our business operations.
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-12 items-center mb-16 md:mb-24">
+      <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-center mb-12 sm:mb-16 md:mb-24">
         <div>
-          <h2 className="text-3xl font-semibold mb-6">Our Commitment</h2>
-          <div className="space-y-4 text-lg">
+          <h2 className="text-2xl sm:text-3xl font-semibold mb-4 sm:mb-6">Our Commitment</h2>
+          <div className="space-y-4 text-base sm:text-lg">
             <p>
               We're dedicated to using our resources and expertise to support communities
               in need and foster the next generation of tech innovators. Through various
@@ -43,9 +43,9 @@ export default function GivingBackPage() {
         </div>
       </div>
 
-      <div className="mb-16 md:mb-24">
-        <h2 className="text-3xl font-semibold mb-8 text-center">Our Initiatives</h2>
-        <div className="grid md:grid-cols-3 gap-8">
+      <div className="mb-12 sm:mb-16 md:mb-24">
+        <h2 className="text-2xl sm:text-3xl font-semibold mb-6 sm:mb-8 text-center">Our Initiatives</h2>
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
           {[
             {
               title: "Tech Education",
@@ -74,17 +74,17 @@ export default function GivingBackPage() {
                 />
               </CardHeader>
               <CardContent>
-                <CardTitle className="mb-4 text-xl">{initiative.title}</CardTitle>
-                <p className="text-muted-foreground">{initiative.description}</p>
+                <CardTitle className="mb-3 sm:mb-4 text-lg sm:text-xl">{initiative.title}</CardTitle>
+                <p className="text-sm sm:text-base text-muted-foreground">{initiative.description}</p>
               </CardContent>
             </Card>
           ))}
         </div>
       </div>
 
-      <div className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 rounded-lg p-8 md:p-12 mb-16 md:mb-24">
-        <h2 className="text-3xl font-semibold mb-8 text-center">Our Impact</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 rounded-lg p-6 sm:p-8 md:p-12 mb-12 sm:mb-16 md:mb-24">
+        <h2 className="text-2xl sm:text-3xl font-semibold mb-6 sm:mb-8 text-center">Our Impact</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
           {[
             { number: "10,000+", label: "Students Reached" },
             { number: "50,000+", label: "Trees Planted" },
@@ -92,16 +92,16 @@ export default function GivingBackPage() {
             { number: "$5M+", label: "Funds Donated" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">{stat.number}</div>
-              <div className="text-sm md:text-base text-muted-foreground">{stat.label}</div>
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-2">{stat.number}</div>
+              <div className="text-sm sm:text-base text-muted-foreground">{stat.label}</div>
             </div>
           ))}
         </div>
       </div>
 
       <div className="text-center">
-        <h2 className="text-3xl font-semibold mb-8">Join Us in Making a Difference</h2>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+        <h2 className="text-2xl sm:text-3xl font-semibold mb-4 sm:mb-6">Join Us in Making a Difference</h2>
+        <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-6 sm:mb-8">
           We invite our employees, clients, and partners to join us in our mission to create positive change.
           Whether it's through volunteering, donations, or collaborative projects, every contribution counts.
         </p>

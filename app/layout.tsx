@@ -1,3 +1,7 @@
+'use client'
+import React, { useState } from "react"
+import './globals.css'
+import { QueryClient, QueryClientProvider } from "react-query"
 import { ThemeProvider } from "@/components/theme-provider"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
@@ -8,9 +12,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const [queryClient] = useState(() => new QueryClient())
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
+      <QueryClientProvider client={queryClient}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -24,6 +30,7 @@ export default function RootLayout({
             <AIChatbot />
           </div>
         </ThemeProvider>
+        </QueryClientProvider>
       </body>
     </html>
   )
@@ -31,4 +38,5 @@ export default function RootLayout({
 
 
 
-import './globals.css'
+
+
