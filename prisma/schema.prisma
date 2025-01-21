@@ -1,0 +1,310 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Enums
+enum UserRole {
+  admin
+  user
+  client
+}
+
+enum ProjectStatus {
+  planning
+  in_progress
+  completed
+  on_hold
+}
+
+enum TaskStatus {
+  todo
+  in_progress
+  done
+}
+
+enum TaskPriority {
+  low
+  medium
+  high
+}
+
+enum ServiceCategory {
+  development
+  consulting
+  analytics
+  security
+}
+
+enum JobType {
+  Full_time
+  Part_time
+  Contract
+}
+
+enum JobStatus {
+  open
+  closed
+}
+
+enum ApplicationStatus {
+  pending
+  reviewed
+  interviewed
+  accepted
+  rejected
+}
+
+enum PartnerCategory {
+  technology
+  business
+  service
+}
+
+enum AnalyticsType {
+  revenue
+  performance
+  engagement
+}
+
+enum BillingPeriod {
+  monthly
+  yearly
+  one_time
+}
+
+// Models
+model User {
+  id               String    @id @default(uuid()) @db.Uuid
+  name             String    @db.VarChar(255)
+  email            String    @unique @db.VarChar(255)
+  role             UserRole  @default(user)
+  avatarUrl        String?   @map("avatar_url")
+  projectsCompleted Int      @default(0) @map("projects_completed")
+  tasksInProgress  Int      @default(0) @map("tasks_in_progress")
+  nextMeeting      DateTime? @map("next_meeting")
+  createdAt        DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt        DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+
+  // Relations
+  projects         Project[]  @relation("ClientProjects")
+  teamMemberships  Project[]  @relation("TeamMembers")
+  assignedTasks    Task[]     @relation("TaskAssignee")
+  uploadedFiles    Attachment[]
+}
+
+model Project {
+  id              String        @id @default(uuid()) @db.Uuid
+  title           String        @db.VarChar(255)
+  description     String?
+  status          ProjectStatus @default(planning)
+  startDate       DateTime      @map("start_date") @db.Timestamptz
+  endDate         DateTime?     @map("end_date") @db.Timestamptz
+  clientId        String?       @map("client_id") @db.Uuid
+  progress        Int?          @db.Integer
+  budgetAllocated Decimal      @map("budget_allocated") @db.Decimal(15,2)
+  budgetSpent     Decimal      @default(0) @map("budget_spent") @db.Decimal(15,2)
+  currency        String       @default("USD") @db.VarChar(3)
+  createdAt       DateTime     @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt       DateTime     @updatedAt @map("updated_at") @db.Timestamptz
+
+  // Relations
+  client          User?        @relation("ClientProjects", fields: [clientId], references: [id])
+  teamMembers     User[]       @relation("TeamMembers")
+  tasks           Task[]
+  technologies    ProjectTechnology[]
+  analytics       AnalyticsData[]
+}
+
+model ProjectTechnology {
+  projectId   String  @map("project_id") @db.Uuid
+  technology  String  @db.VarChar(100)
+  project     Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@id([projectId, technology])
+}
+
+model Task {
+  id          String       @id @default(uuid()) @db.Uuid
+  title       String       @db.VarChar(255)
+  description String?
+  status      TaskStatus   @default(todo)
+  priority    TaskPriority @default(medium)
+  assigneeId  String?      @map("assignee_id") @db.Uuid
+  projectId   String       @map("project_id") @db.Uuid
+  dueDate     DateTime?    @map("due_date") @db.Timestamptz
+  createdAt   DateTime     @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt   DateTime     @updatedAt @map("updated_at") @db.Timestamptz
+
+  // Relations
+  assignee    User?        @relation("TaskAssignee", fields: [assigneeId], references: [id])
+  project     Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  tags        TaskTag[]
+  attachments TaskAttachment[]
+}
+
+model TaskTag {
+  taskId      String  @map("task_id") @db.Uuid
+  tag         String  @db.VarChar(50)
+  task        Task    @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  @@id([taskId, tag])
+}
+
+model Service {
+  id          String          @id @default(uuid()) @db.Uuid
+  title       String          @db.VarChar(255)
+  description String?
+  category    ServiceCategory
+  createdAt   DateTime        @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt   DateTime        @updatedAt @map("updated_at") @db.Timestamptz
+
+  // Relations
+  features    ServiceFeature[]
+  pricing     ServicePricing?
+  analytics   AnalyticsData[]
+}
+
+model ServiceFeature {
+  id          String   @id @default(uuid()) @db.Uuid
+  serviceId   String   @map("service_id") @db.Uuid
+  icon        String?  @db.VarChar(50)
+  title       String   @db.VarChar(255)
+  description String?
+  service     Service  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+}
+
+model ServicePricing {
+  serviceId     String        @id @map("service_id") @db.Uuid
+  amount        Decimal       @db.Decimal(15,2)
+  currency      String        @default("USD") @db.VarChar(3)
+  billingPeriod BillingPeriod @map("billing_period")
+  service       Service       @relation(fields: [serviceId], references: [id])
+}
+
+model JobPosting {
+  id           String       @id @default(uuid()) @db.Uuid
+  title        String       @db.VarChar(255)
+  department   String       @db.VarChar(100)
+  location     String       @db.VarChar(255)
+  type         JobType
+  salary       Decimal?     @db.Decimal(15,2)
+  experience   Int?
+  description  String?
+  status       JobStatus    @default(open)
+  postedDate   DateTime     @default(now()) @map("posted_date") @db.Timestamptz
+
+  // Relations
+  requirements JobRequirement[]
+  benefits     JobBenefit[]
+  applications JobApplication[]
+}
+
+model JobRequirement {
+  jobId       String     @map("job_id") @db.Uuid
+  requirement String
+  job         JobPosting @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  @@id([jobId, requirement])
+}
+
+model JobBenefit {
+  jobId   String     @map("job_id") @db.Uuid
+  benefit String
+  job     JobPosting @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  @@id([jobId, benefit])
+}
+
+model JobApplication {
+  id            String            @id @default(uuid()) @db.Uuid
+  jobId         String            @map("job_id") @db.Uuid
+  applicantName String            @map("applicant_name") @db.VarChar(255)
+  email         String            @db.VarChar(255)
+  resumeUrl     String            @map("resume_url")
+  coverLetter   String?           @map("cover_letter")
+  status        ApplicationStatus @default(pending)
+  submittedAt   DateTime          @default(now()) @map("submitted_at") @db.Timestamptz
+  job           JobPosting        @relation(fields: [jobId], references: [id], onDelete: Cascade)
+}
+
+model Attachment {
+  id          String    @id @default(uuid()) @db.Uuid
+  filename    String    @db.VarChar(255)
+  url         String
+  type        String?   @db.VarChar(50)
+  size        Int?
+  uploadedBy  String    @map("uploaded_by") @db.Uuid
+  uploadedAt  DateTime  @default(now()) @map("uploaded_at") @db.Timestamptz
+  
+  // Relations
+  uploader    User      @relation(fields: [uploadedBy], references: [id])
+  tasks       TaskAttachment[]
+}
+
+model TaskAttachment {
+  taskId       String     @map("task_id") @db.Uuid
+  attachmentId String     @map("attachment_id") @db.Uuid
+  task         Task       @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  attachment   Attachment @relation(fields: [attachmentId], references: [id], onDelete: Cascade)
+
+  @@id([taskId, attachmentId])
+}
+
+model Testimonial {
+  id        String   @id @default(uuid()) @db.Uuid
+  quote     String
+  author    String   @db.VarChar(255)
+  position  String?  @db.VarChar(255)
+  company   String?  @db.VarChar(255)
+  imageUrl  String?  @map("image_url")
+  rating    Int?
+  verified  Boolean  @default(false)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+}
+
+model Partner {
+  id          String          @id @default(uuid()) @db.Uuid
+  name        String          @db.VarChar(255)
+  logoUrl     String?         @map("logo_url")
+  website     String?
+  category    PartnerCategory
+  description String?
+  active      Boolean         @default(true)
+  since       DateTime        @db.Date
+}
+
+model AnalyticsData {
+  id          String        @id @default(uuid()) @db.Uuid
+  projectId   String?       @map("project_id") @db.Uuid
+  serviceId   String?       @map("service_id") @db.Uuid
+  type        AnalyticsType
+  periodStart DateTime      @map("period_start") @db.Timestamptz
+  periodEnd   DateTime      @map("period_end") @db.Timestamptz
+  createdAt   DateTime      @default(now()) @map("created_at") @db.Timestamptz
+
+  // Relations
+  project     Project?      @relation(fields: [projectId], references: [id])
+  service     Service?      @relation(fields: [serviceId], references: [id])
+  metrics     AnalyticsMetric[]
+}
+
+model AnalyticsMetric {
+  analyticsId String        @map("analytics_id") @db.Uuid
+  name        String        @db.VarChar(100)
+  value       Decimal       @db.Decimal(15,2)
+  unit        String?       @db.VarChar(50)
+  analytics   AnalyticsData @relation(fields: [analyticsId], references: [id], onDelete: Cascade)
+
+  @@id([analyticsId, name])
+}

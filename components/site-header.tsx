@@ -18,6 +18,53 @@ import { ThemeToggle } from "@/components/theme-toggle"
 import { Search } from "@/components/search"
 import { cn } from "@/lib/utils"
 
+type RouteItem = {
+  href: string
+  label: string
+}
+
+type Route = {
+  label: string
+  href?: string
+  items?: RouteItem[]
+}
+
+const routes: Route[] = [
+  {
+    label: "Who We Are",
+    items: [
+      { href: "/about", label: "About Us" },
+      { href: "/vision", label: "Our Vision" },
+      { href: "/leadership", label: "Leadership" },
+    ]
+  },
+  {
+    label: "What We Do",
+    items: [
+      { href: "/agriculture-livestock", label: "Agriculture & Livestock" },
+      { href: "/manufacturing", label: "Manufacturing" },
+      { href: "/food-and-beverage", label: "Food & Beverage" },
+      { href: "/real-estate-development", label: "Real Estate" },
+      { href: "/technology", label: "Technology" },
+      { href: "/mining", label: "Mining" },
+      { href: "/transportation-logistics", label: "Transportation" },
+      { href: "/renewable-energy", label: "Renewable Energy" },
+    ]
+  },
+  {
+    href: "/news",
+    label: "In The News"
+  },
+  {
+    href: "/giving-back",
+    label: "Giving Back"
+  },
+  {
+    href: "/careers",
+    label: "Careers"
+  }
+]
+
 export function SiteHeader() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
@@ -51,34 +98,28 @@ export function SiteHeader() {
           >
             <Link href="/" className="flex items-center space-x-2">
               <span className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-              BihiGroup
+                BihiGroup
               </span>
             </Link>
           </motion.div>
           <nav className="hidden lg:flex items-center space-x-8">
-            <NavItem href="/" label="Home" isActive={pathname === '/'} />
-            <NavDropdown
-              label="Who We Are"
-              items={[
-                { href: "/about", label: "About Us" },
-                { href: "/mission", label: "Our Mission" },
-                { href: "/leadership", label: "Leadership" },
-              ]}
-              isActive={['/about', '/mission', '/leadership'].includes(pathname)}
-            />
-            <NavDropdown
-              label="What We Do"
-              items={[
-                { href: "/services/business-consulting", label: "Business Consulting" },
-                { href: "/services/data-analytics", label: "Data Analytics" },
-                { href: "/services/security-solutions", label: "Security Solutions" },
-                { href: "/services/team-development", label: "Team Development" },
-              ]}
-              isActive={pathname.startsWith('/services')}
-            />
-            <NavItem href="/news" label="In The News" isActive={pathname === '/news'} />
-            <NavItem href="/giving-back" label="Giving Back" isActive={pathname === '/giving-back'} />
-            <NavItem href="/careers" label="Careers" isActive={pathname === '/careers'} />
+            {routes.map((route, index) => (
+              route.items ? (
+                <NavDropdown
+                  key={`dropdown-${index}`}
+                  label={route.label}
+                  items={route.items}
+                  isActive={route.items.some(item => pathname === item.href)}
+                />
+              ) : (
+                <NavItem
+                  key={`link-${route.href}`}
+                  href={route.href!}
+                  label={route.label}
+                  isActive={pathname === route.href}
+                />
+              )
+            ))}
           </nav>
           <div className="flex items-center space-x-4">
             <motion.div
@@ -121,21 +162,23 @@ export function SiteHeader() {
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px] sm:w-[400px]">
                 <nav className="flex flex-col space-y-4 mt-8">
-                  <Link href="/" className="text-lg font-semibold hover:text-primary transition-colors">Home</Link>
-                  <MobileNavDropdown label="Who We Are" items={[
-                    { href: "/about", label: "About Us" },
-                    { href: "/mission", label: "Our Mission" },
-                    { href: "/leadership", label: "Leadership" },
-                  ]} />
-                  <MobileNavDropdown label="What We Do" items={[
-                    { href: "/services/business-consulting", label: "Business Consulting" },
-                    { href: "/services/data-analytics", label: "Data Analytics" },
-                    { href: "/services/security-solutions", label: "Security Solutions" },
-                    { href: "/services/team-development", label: "Team Development" },
-                  ]} />
-                  <Link href="/news" className="text-lg font-semibold hover:text-primary transition-colors">In The News</Link>
-                  <Link href="/giving-back" className="text-lg font-semibold hover:text-primary transition-colors">Giving Back</Link>
-                  <Link href="/careers" className="text-lg font-semibold hover:text-primary transition-colors">Careers</Link>
+                  {routes.map((route, index) => (
+                    route.items ? (
+                      <MobileNavDropdown
+                        key={`mobile-dropdown-${index}`}
+                        label={route.label}
+                        items={route.items}
+                      />
+                    ) : (
+                      <Link
+                        key={`mobile-link-${route.href}`}
+                        href={route.href!}
+                        className="text-lg font-semibold hover:text-primary transition-colors"
+                      >
+                        {route.label}
+                      </Link>
+                    )
+                  ))}
                   <Button className="mt-4" asChild>
                     <Link href="/contact">Contact</Link>
                   </Button>
@@ -169,7 +212,7 @@ function NavItem({ href, label, isActive }: { href: string; label: string; isAct
   )
 }
 
-function NavDropdown({ label, items, isActive }: { label: string; items: { href: string; label: string }[]; isActive: boolean }) {
+function NavDropdown({ label, items, isActive }: { label: string; items: RouteItem[]; isActive: boolean }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className={cn(
@@ -192,7 +235,7 @@ function NavDropdown({ label, items, isActive }: { label: string; items: { href:
   )
 }
 
-function MobileNavDropdown({ label, items }: { label: string; items: { href: string; label: string }[] }) {
+function MobileNavDropdown({ label, items }: { label: string; items: RouteItem[] }) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (

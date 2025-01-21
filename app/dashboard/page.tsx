@@ -1,119 +1,62 @@
 'use client'
 
-import { useState } from 'react'
-import { Bar, Line, Pie } from 'react-chartjs-2'
-import { 
-  Chart as ChartJS, 
-  CategoryScale, 
-  LinearScale, 
-  BarElement, 
-  LineElement,
-  PointElement,
-  ArcElement,
-  Title,
-  Tooltip,
-  Legend
-} from 'chart.js'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-
-ChartJS.register(
-  CategoryScale, 
-  LinearScale, 
-  BarElement, 
-  LineElement,
-  PointElement,
-  ArcElement,
-  Title,
-  Tooltip,
-  Legend
-)
-
-const revenueData = {
-  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-  datasets: [
-    {
-      label: 'Revenue',
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: 'rgba(75, 192, 192, 0.6)',
-    },
-  ],
-}
-
-const customerData = {
-  labels: ['New', 'Returning', 'Inactive'],
-  datasets: [
-    {
-      data: [300, 50, 100],
-      backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-      hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-    },
-  ],
-}
-
-const performanceData = {
-  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-  datasets: [
-    {
-      label: 'Performance',
-      data: [65, 59, 80, 81, 56, 55],
-      fill: false,
-      borderColor: 'rgb(75, 192, 192)',
-      tension: 0.1,
-    },
-  ],
-}
+import { Overview } from "@/components/dashboard/overview"
+import { RecentActivity } from "@/components/dashboard/recent-activity"
+import { ProjectsOverview } from "@/components/dashboard/projects-overview"
+import { TeamMembers } from "@/components/dashboard/team-members"
+import { MetricsCards } from "@/components/dashboard/metrics-cards"
 
 export default function DashboardPage() {
-  const [timeRange, setTimeRange] = useState('6m')
-
   return (
-    <div className="container py-24">
-      <h1 className="text-4xl font-bold mb-8">Data Visualization Dashboard</h1>
+    <div className="p-6 space-y-6">
+      <h1 className="text-3xl font-bold">Dashboard</h1>
       
-      <div className="mb-8">
-        <Select onValueChange={(value) => setTimeRange(value)}>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Select time range" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="1m">Last Month</SelectItem>
-            <SelectItem value="3m">Last 3 Months</SelectItem>
-            <SelectItem value="6m">Last 6 Months</SelectItem>
-            <SelectItem value="1y">Last Year</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
+      {/* Key Metrics */}
+      <MetricsCards />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <Card>
+      {/* Main Content */}
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-7">
+        {/* Analytics Overview */}
+        <Card className="lg:col-span-4">
           <CardHeader>
-            <CardTitle>Revenue Overview</CardTitle>
+            <CardTitle>Analytics Overview</CardTitle>
           </CardHeader>
           <CardContent>
-            <Bar data={revenueData} />
+            <Overview />
           </CardContent>
         </Card>
 
-        <Card>
+        {/* Recent Activity */}
+        <Card className="lg:col-span-3">
           <CardHeader>
-            <CardTitle>Customer Segmentation</CardTitle>
+            <CardTitle>Recent Activity</CardTitle>
           </CardHeader>
           <CardContent>
-            <Pie data={customerData} />
+            <RecentActivity />
           </CardContent>
         </Card>
 
-        <Card className="md:col-span-2">
+        {/* Projects Overview */}
+        <Card className="lg:col-span-4">
           <CardHeader>
-            <CardTitle>Performance Metrics</CardTitle>
+            <CardTitle>Projects</CardTitle>
           </CardHeader>
           <CardContent>
-            <Line data={performanceData} />
+            <ProjectsOverview />
+          </CardContent>
+        </Card>
+
+        {/* Team Members */}
+        <Card className="lg:col-span-3">
+          <CardHeader>
+            <CardTitle>Team Members</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <TeamMembers />
           </CardContent>
         </Card>
       </div>
     </div>
   )
-}
-
+} 
