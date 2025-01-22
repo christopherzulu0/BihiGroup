@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input"
 import { useInView } from "react-intersection-observer"
-import { Navigation } from "../components/navigation"
+
 import { SolutionShowcase } from "./components/solution-showcase"
 import { ImpactMap } from "./components/impact-map"
 import { TestimonialCarousel } from "./components/testimonial-carousel"
@@ -47,7 +47,7 @@ export default function RenewableEnergyPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navigation />
+      
 
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center justify-center text-white">
