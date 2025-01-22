@@ -1,7 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-      domains: ['miro.medium.com'], // Specify the domain without the full image URL
+      domains: ['miro.medium.com',
+        'www.worldbank.org',
+        'd12aarmt01l54a.cloudfront.net',
+        'd.newsweek.com',
+        'aicontentfy-customer-images.s3.eu-central-1.amazonaws.com',
+        'encrypted-tbn0.gstatic.com',
+        'www.padok.fr',
+        'swimburger.net'
+      ], // Specify the domain without the full image URL
     },
     reactStrictMode: true,
     typescript: {

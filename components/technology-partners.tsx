@@ -1,11 +1,11 @@
 import Image from "next/image"
 
 const partners = [
-  { name: "TechGiant", logo: "/placeholder.svg?height=80&width=200" },
-  { name: "InnovateCo", logo: "/placeholder.svg?height=80&width=200" },
-  { name: "FutureSoft", logo: "/placeholder.svg?height=80&width=200" },
-  { name: "DataDynamics", logo: "/placeholder.svg?height=80&width=200" },
-  { name: "CloudMasters", logo: "/placeholder.svg?height=80&width=200" },
+  { name: "Cisco", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTttZ-BFWy_u0fgLmCwlzL5OKKnOddS9GUh2g&s" },
+  { name: "Amazon Web Services", logo: "https://www.padok.fr/hubfs/Website%202021/Illustrations/Aws-padok.png" },
+  { name: "Microsoft Azure", logo: "https://swimburger.net/media/0zcpmk1b/azure.jpg" },
+  { name: "Google Cloud Platform", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcl6bNz164hBmV0cRsPsc1EOAyZQPiefrRHQ&s" },
+  { name: "Oracle Cloud", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7kUS0JS4hfbWsqt6bZxKYBFvNyJRyjnCsQQ&s" },
 ]
 
 export function TechnologyPartners() {

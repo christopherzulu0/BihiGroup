@@ -32,7 +32,7 @@ export function FeaturedCaseStudy() {
             <div className="lg:flex">
               <div className="lg:w-1/2 relative overflow-hidden group">
                 <Image
-                  src="/placeholder.svg?height=400&width=600"
+                  src="https://www.worldbank.org/content/dam/photos/780x439/2021/jan/Tanzania.jpg"
                   alt="Case Study: TechCorp Transformation"
                   width={600}
                   height={400}
