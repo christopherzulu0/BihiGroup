@@ -11,9 +11,9 @@ const nextConfig = {
       // !! WARN !!
       ignoreBuildErrors: true,
     },
-    experimental: {
-      appDir: true, // Uncomment this only if you're using the app directory
-    },
+    // experimental: {
+    //   appDir: true, // Uncomment this only if you're using the app directory
+    // },
   };
   
   export default nextConfig;
