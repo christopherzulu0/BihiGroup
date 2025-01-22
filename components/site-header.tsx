@@ -33,9 +33,9 @@ const routes: Route[] = [
   {
     label: "Who We Are",
     items: [
-      { href: "/about", label: "About Us" },
-      { href: "/vision", label: "Our Vision" },
+      { href: "/our-vision", label: "Our Vision" },
       { href: "/leadership", label: "Leadership" },
+      { href: "/about-founder", label: "Founder" },
     ]
   },
   {
@@ -50,8 +50,6 @@ const routes: Route[] = [
       { href: "/transportation-logistics", label: "Transportation" },
       { href: "/renewable-energy", label: "Renewable Energy" },
       { href: "/gold-gimestone-mining", label: "Gold & Gemstone Mining" },
-      { href: "/about-founder", label: "Founder" },
-      { href: "/our-vision", label: "Our Vision" },
       { href: "/construction-infrastructure", label: "Construction" },
     ]
   },
