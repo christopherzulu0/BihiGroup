@@ -8,7 +8,8 @@ const nextConfig = {
         'aicontentfy-customer-images.s3.eu-central-1.amazonaws.com',
         'encrypted-tbn0.gstatic.com',
         'www.padok.fr',
-        'swimburger.net'
+        'swimburger.net',
+        'media.licdn.com'
       ], // Specify the domain without the full image URL
     },
     reactStrictMode: true,

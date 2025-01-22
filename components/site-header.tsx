@@ -46,7 +46,6 @@ const routes: Route[] = [
       { href: "/food-and-beverage", label: "Food & Beverage" },
       { href: "/real-estate-development", label: "Real Estate" },
       { href: "/technology", label: "Technology" },
-      { href: "/mining", label: "Mining" },
       { href: "/transportation-logistics", label: "Transportation" },
       { href: "/renewable-energy", label: "Renewable Energy" },
       { href: "/gold-gimestone-mining", label: "Gold & Gemstone Mining" },

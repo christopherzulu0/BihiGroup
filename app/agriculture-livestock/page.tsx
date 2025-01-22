@@ -57,7 +57,7 @@ export default function AgricultureLivestockPage() {
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center justify-center text-white">
         <Image
-          src="/placeholder.svg?height=1080&width=1920"
+          src="https://media.licdn.com/dms/image/v2/D4D22AQHBrEPbHeH1ug/feedshare-shrink_800/feedshare-shrink_800/0/1720707689372?e=2147483647&v=beta&t=VT2DLhchcOh_nmiQVrGr9wDWiK_FB1V3tjIbz2FMNks"
           alt="Agriculture and Livestock Hero"
           fill
           className="object-cover"
