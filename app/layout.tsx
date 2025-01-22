@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ThemeProvider } from "@/components/theme-provider"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
-import { AIChatbot } from "@/components/ai-chatbot"
+// import { AIChatbot } from "@/components/ai-chatbot"
 
 export default function RootLayout({
   children,
@@ -35,7 +35,7 @@ export default function RootLayout({
               <SiteHeader />
               <main className="flex-1">{children}</main>
               <SiteFooter />
-              <AIChatbot />
+              {/* <AIChatbot /> */}
             </div>
           </ThemeProvider>
         </QueryClientProvider>
