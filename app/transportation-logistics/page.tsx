@@ -42,7 +42,7 @@ export default function TransportationLogisticsPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navigation />
+      {/* <Navigation /> */}
 
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center justify-center text-white">
