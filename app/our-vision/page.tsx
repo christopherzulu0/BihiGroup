@@ -15,7 +15,7 @@ export default function OurVisionPage() {
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center justify-center text-white">
         <Image
-          src="/placeholder.svg?height=1080&width=1920&text=Our+Vision"
+          src="https://res.cloudinary.com/mkrstudio/image/upload/c_fill,w_400/f_auto,q_auto,dpr_3.0/wvnzcontent/resources/worldvision/media/generalimages/africa.jpg"
           alt="Our Vision"
           fill
           className="object-cover"

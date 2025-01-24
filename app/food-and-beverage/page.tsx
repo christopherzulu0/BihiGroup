@@ -25,14 +25,61 @@ export default function FoodAndBeveragePage() {
   ]
 
   const products = [
-    { name: "Soft Drinks", description: "Refreshing beverages for every occasion, made with natural ingredients." },
-    { name: "Cooking Oils", description: "High-quality, heart-healthy cooking oils for all your culinary needs." },
-    { name: "Wheat Flour", description: "Premium wheat flour for perfect baking results every time." },
-    { name: "Corn Flour", description: "Versatile corn flour for a variety of traditional and modern recipes." },
+    {
+      name: "Soft Drinks",
+      image: "https://www.coca-cola.com/content/dam/onexp/ng/home-image/brands/fanta/banner%20desktop%20fanta.png",
+      description: "Refreshing beverages for every occasion, made with natural ingredients.",
+      features: [
+        "Natural sweeteners",
+        "Zero preservatives",
+        "Vitamin-enriched",
+        "Multiple flavors"
+      ]
+    },
+    {
+      name: "Cooking Oils",
+      image: "https://www.holar.com.tw/wp-content/uploads/Holar-Blog-What-are-the-uses-for-different-edible-oils-when-cooking-Cover.jpg",
+      description: "High-quality, heart-healthy cooking oils for all your culinary needs.",
+      features: [
+        "Cold-pressed",
+        "Heart-healthy formulation",
+        "Multiple varieties",
+        "Sustainable sourcing"
+      ]
+    },
+    {
+      name: "Wheat Flour",
+      image: "https://www.preservemania.com/wp-content/uploads/2024/12/image-972.jpeg",
+      description: "Premium wheat flour for perfect baking results every time.",
+      features: [
+        "High protein content",
+        "Fortified with vitamins",
+        "Multiple grades available",
+        "Consistent quality"
+      ]
+    },
+    {
+      name: "Corn Flour",
+      image: "https://assets.epicurious.com/photos/663161561bf7ed43154d58dd/16:9/w_4581,h_2577,c_limit/cornstarch-substitutions_HERO_041124_4050_VOG_final.jpg",
+      description: "Versatile corn flour for a variety of traditional and modern recipes.",
+      features: [
+        "Fine texture",
+        "GMO-free corn",
+        "Gluten-free option",
+        "Local sourcing"
+      ]
+    },
     {
       name: "Ready-to-eat Products",
+      image: "https://www.kapilabakers.com/images/slider/erbil-apartment-rent-hawler-iraq-kurdistan-for-rent-main2.png",
       description: "Convenient, nutritious meals for busy lifestyles without compromising on taste.",
-    },
+      features: [
+        "Balanced nutrition",
+        "No artificial preservatives",
+        "Quick preparation",
+        "Traditional recipes"
+      ]
+    }
   ]
 
   return (
@@ -42,7 +89,7 @@ export default function FoodAndBeveragePage() {
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center justify-center text-white">
         <Image
-          src="/placeholder.svg?height=1080&width=1920&text=Food+and+Beverage"
+          src="https://www.kerry.com/content/dam/kerry/en/images/about/purpose/sustainability/society/community-impact/Nourishing-Communities.jpg"
           alt="Food and Beverage Showcase"
           fill
           className="object-cover"
@@ -102,17 +149,51 @@ export default function FoodAndBeveragePage() {
       <section className="py-16 px-4 md:px-8 bg-white">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Our Product Range</h2>
-          <Tabs defaultValue="soft-drinks" className="w-full">
+          <Tabs defaultValue={products[0].name.toLowerCase().replace(" ", "-")} className="w-full">
             <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 mb-8">
               {products.map((product) => (
-                <TabsTrigger key={product.name} value={product.name.toLowerCase().replace(" ", "-")}>
+                <TabsTrigger 
+                  key={product.name} 
+                  value={product.name.toLowerCase().replace(" ", "-")}
+                >
                   {product.name}
                 </TabsTrigger>
               ))}
             </TabsList>
             {products.map((product) => (
-              <TabsContent key={product.name} value={product.name.toLowerCase().replace(" ", "-")}>
-                <ProductShowcase name={product.name} description={product.description} />
+              <TabsContent 
+                key={product.name} 
+                value={product.name.toLowerCase().replace(" ", "-")}
+              >
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-2xl">{product.name}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div className="relative h-[300px] w-full">
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        fill
+                        className="rounded-lg object-cover"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-lg text-muted-foreground mb-4">
+                        {product.description}
+                      </p>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        {product.features.map((feature, index) => (
+                          <Card key={index} className="bg-muted/50">
+                            <CardContent className="p-4">
+                              <p className="text-sm">{feature}</p>
+                            </CardContent>
+                          </Card>
+                        ))}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </TabsContent>
             ))}
           </Tabs>

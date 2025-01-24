@@ -25,10 +25,50 @@ export default function ManufacturingPage() {
   ]
 
   const products = [
-    { name: "Roofing Systems", description: "Durable and weather-resistant roofing solutions for various climates." },
-    { name: "Cement", description: "High-quality cement for construction and infrastructure projects." },
-    { name: "Organic Fertilizers", description: "Eco-friendly fertilizers to enhance soil fertility and crop yields." },
-    { name: "Packaging Solutions", description: "Innovative and sustainable packaging for diverse industries." },
+    {
+      name: "Roofing Systems",
+      image: "https://www.stahlroofing.ca/wp-content/uploads/2024/09/The-Role-Of-Residential-Metal-Roofing-In-Modern-Architectural-Designs.jpg.webp",
+      description: "Durable and weather-resistant roofing solutions for various climates.",
+      features: [
+        "UV-resistant materials",
+        "Thermal insulation",
+        "Storm-proof design",
+        "Easy installation system"
+      ]
+    },
+    {
+      name: "Cement",
+      image: "https://static.theprint.in/wp-content/uploads/2023/11/cement.jpg",
+      description: "High-quality cement for construction and infrastructure projects.",
+      features: [
+        "High early strength",
+        "Superior durability",
+        "Environmental compliance",
+        "Multiple grade options"
+      ]
+    },
+    {
+      name: "Organic Fertilizers",
+      image: "https://www.afdb.org/sites/default/files/styles/1700x900/public/csm_banner-affm_9fea638c56.jpg?itok=t6W0MzjQ",
+      description: "Eco-friendly fertilizers to enhance soil fertility and crop yields.",
+      features: [
+        "100% organic materials",
+        "Slow-release nutrients",
+        "Soil enrichment",
+        "Sustainable production"
+      ]
+    },
+    {
+      name: "Packaging Solutions",
+      image: "https://hivelife.com/wp-content/uploads/2022/08/Hive-Life-Sustainabl.-Promoting-Circular-Economy--1024x427.jpg",
+      description: "Innovative and sustainable packaging for diverse industries.",
+      features: [
+        "Biodegradable options",
+        "Custom designs",
+        "Food-grade materials",
+        "Recycling programs"
+      ]
+    }
   ]
 
   return (
@@ -38,7 +78,7 @@ export default function ManufacturingPage() {
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center justify-center text-white">
         <Image
-          src="/placeholder.svg?height=1080&width=1920&text=Manufacturing+Facility"
+          src="https://www.market-prospects.com/storage/images/dbb2b53340cd2d814b9ebf6e8cb0c823.jpg"
           alt="Manufacturing Facility"
           fill
           className="object-cover"
@@ -100,17 +140,51 @@ export default function ManufacturingPage() {
       <section className="py-16 px-4 md:px-8 bg-white">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Our Product Range</h2>
-          <Tabs defaultValue="roofing" className="w-full">
+          <Tabs defaultValue={products[0].name.toLowerCase().replace(" ", "-")} className="w-full">
             <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 mb-8">
               {products.map((product) => (
-                <TabsTrigger key={product.name} value={product.name.toLowerCase().replace(" ", "-")}>
+                <TabsTrigger 
+                  key={product.name} 
+                  value={product.name.toLowerCase().replace(" ", "-")}
+                >
                   {product.name}
                 </TabsTrigger>
               ))}
             </TabsList>
             {products.map((product) => (
-              <TabsContent key={product.name} value={product.name.toLowerCase().replace(" ", "-")}>
-                <ProductShowcase name={product.name} description={product.description} />
+              <TabsContent 
+                key={product.name} 
+                value={product.name.toLowerCase().replace(" ", "-")}
+              >
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-2xl">{product.name}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div className="relative h-[300px] w-full">
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        fill
+                        className="rounded-lg object-cover"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-lg text-muted-foreground mb-4">
+                        {product.description}
+                      </p>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        {product.features.map((feature, index) => (
+                          <Card key={index} className="bg-muted/50">
+                            <CardContent className="p-4">
+                              <p className="text-sm">{feature}</p>
+                            </CardContent>
+                          </Card>
+                        ))}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </TabsContent>
             ))}
           </Tabs>

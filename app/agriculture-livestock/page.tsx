@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Input } from "@/components/ui/input"
 import { useInView } from "react-intersection-observer"
-import { Navigation } from "./components/navigation"
+
 import { StatCard } from "./components/stat-card"
 import { TestimonialCarousel } from "./components/testimonial-carousel"
 
@@ -24,8 +24,61 @@ export default function AgricultureLivestockPage() {
     { label: "Annual Yield (tons)", value: 500000 },
   ]
 
-  const crops = ["Olive", "Sesame", "Wheat", "Corn", "Cotton"]
-  const livestock = ["Goats", "Cattle", "Ostriches", "Poultry", "Aquaculture"]
+  const crops = [
+    {
+      name: "Olive",
+      image: "https://www.botanicgardens.org.au/sites/default/files/2023-07/Horticulture-Annan-African-Olive-496x372.jpg",
+      description: "Our olive cultivation employs advanced techniques to maximize yield and quality, contributing to Africa's agricultural self-sufficiency."
+    },
+    {
+      name: "Sesame",
+      image: "https://vijayimpex.co.in/wp-content/uploads/2021/02/sesame-VI.jpg",
+      description: "Premium sesame production using sustainable farming practices and modern harvesting techniques."
+    },
+    {
+      name: "Wheat",
+      image: "https://goodineverygrain.ca/wp-content/uploads/2021/06/wheat-berries-bowl-1024x683.png",
+      description: "Large-scale wheat cultivation using drought-resistant varieties and precision farming methods."
+    },
+    {
+      name: "Corn",
+      image: "https://i.guim.co.uk/img/media/7a8c772b94455e7dac989c2dee9ae0dcdfca2ded/877_1487_3661_2196/master/3661.jpg?width=1200&quality=85&auto=format&fit=max&s=ad5fc109484ac8181cddb86e5501debe",
+      description: "High-yield corn production utilizing advanced irrigation systems and soil management."
+    },
+    {
+      name: "Cotton",
+      image: "https://oritain.com/assets/Blogs/cotton-risk-origins-blog.jpg",
+      description: "Quality cotton cultivation with integrated pest management and sustainable practices."
+    }
+  ]
+
+  const livestock = [
+    {
+      name: "Goats",
+      image: "https://cyfairanimalhospital.com/wp-content/uploads/2019/01/blog_goaT-1024x571.jpg",
+      description: "Modern goat farming with focus on breed improvement and sustainable practices."
+    },
+    {
+      name: "Cattle",
+      image: "https://beefmaster.co.za/wp-content/uploads/2023/02/DSC_7728-1-scaled.jpg",
+      description: "Advanced cattle ranching with emphasis on quality breeds and optimal nutrition."
+    },
+    {
+      name: "Ostriches",
+      image: "https://cdn.britannica.com/35/154235-050-E9B69238/ostriches-Maasai-Mara-National-Reserve-Kenya.jpg",
+      description: "Specialized ostrich farming with state-of-the-art facilities and expert care."
+    },
+    {
+      name: "Poultry",
+      image: "https://emedenkenyafarmers.co.ke/wp-content/uploads/2023/09/C0125502-Chicken_farming-3223548444-1450x790.jpg",
+      description: "Large-scale poultry operations with modern facilities and biosecurity measures."
+    },
+    {
+      name: "Aquaculture",
+      image: "https://www.graygroupintl.com/hubfs/Gray%20Group%20International/GGI%20-%20Approved%20and%20Converted%20%28WebP%29/Aquaculture%20Navigating%20the%20Future%20of%20Sustainable%20Seafood.webp",
+      description: "Sustainable fish farming using advanced aquaculture technologies and practices."
+    }
+  ]
 
   const faqs = [
     {
@@ -144,21 +197,21 @@ export default function AgricultureLivestockPage() {
             <TabsContent value="crops">
               <div className="grid md:grid-cols-3 gap-8 mt-8">
                 {crops.map((crop) => (
-                  <Card key={crop}>
+                  <Card key={crop.name}>
                     <CardHeader>
-                      <CardTitle>{crop}</CardTitle>
+                      <CardTitle>{crop.name}</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <Image
-                        src={`/placeholder.svg?height=200&width=300&text=${crop}`}
-                        alt={crop}
-                        width={300}
-                        height={200}
-                        className="rounded-md mb-4"
-                      />
+                      <div className="relative h-[200px] mb-4">
+                        <Image
+                          src={crop.image}
+                          alt={crop.name}
+                          fill
+                          className="rounded-md object-cover"
+                        />
+                      </div>
                       <CardDescription>
-                        Our {crop.toLowerCase()} cultivation employs advanced techniques to maximize yield and quality,
-                        contributing to Africa's agricultural self-sufficiency.
+                        {crop.description}
                       </CardDescription>
                     </CardContent>
                   </Card>
@@ -168,21 +221,21 @@ export default function AgricultureLivestockPage() {
             <TabsContent value="livestock">
               <div className="grid md:grid-cols-3 gap-8 mt-8">
                 {livestock.map((animal) => (
-                  <Card key={animal}>
+                  <Card key={animal.name}>
                     <CardHeader>
-                      <CardTitle>{animal}</CardTitle>
+                      <CardTitle>{animal.name}</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <Image
-                        src={`/placeholder.svg?height=200&width=300&text=${animal}`}
-                        alt={animal}
-                        width={300}
-                        height={200}
-                        className="rounded-md mb-4"
-                      />
+                      <div className="relative h-[200px] mb-4">
+                        <Image
+                          src={animal.image}
+                          alt={animal.name}
+                          fill
+                          className="rounded-md object-cover"
+                        />
+                      </div>
                       <CardDescription>
-                        Our {animal.toLowerCase()} management focuses on ethical practices, optimal nutrition, and
-                        advanced veterinary care to ensure healthy and productive livestock.
+                        {animal.description}
                       </CardDescription>
                     </CardContent>
                   </Card>
