@@ -17,7 +17,7 @@ export default function AboutFounderPage() {
       <section className="relative h-[70vh] flex items-center justify-center text-white">
         <Image
           src="/placeholder.svg?height=1080&width=1920&text=Yassin+Bihi:+Founder+and+CEO"
-          alt="Yassin Bihi: Founder and CEO"
+          alt="John Doe: Founder and CEO"
           fill
           className="object-cover"
           priority
@@ -30,7 +30,7 @@ export default function AboutFounderPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Yassin Bihi
+           John Doe 
           </motion.h1>
           <motion.p
             className="text-xl md:text-2xl max-w-2xl mx-auto"
@@ -49,17 +49,17 @@ export default function AboutFounderPage() {
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">A Visionary Leader</h2>
             <p className="text-lg text-gray-700 mb-6">
-              Yassin Bihi is the visionary founder and CEO of Bihi Group, bringing over 20 years of expertise in the
+             John Doe  is the visionary founder and CEO of Bihi Group, bringing over 20 years of expertise in the
               transportation and logistics industry. His career is marked by exceptional leadership, innovation, and a
               passion for creating impactful businesses that drive progress across Africa.
             </p>
             <p className="text-lg text-gray-700 mb-6">
-              Yassin's journey began at leading companies such as UPS, Exel Logistics, and Fort McKay Logistics, where
+             John Doe's journey began at leading companies such as UPS, Exel Logistics, and Fort McKay Logistics, where
               he gained extensive experience in supply chain management and transportation operations. He later joined
               Richmond Freight System Inc. as a manager, where he successfully scaled the company from a fleet of just
               three trucks to an impressive 60-truck operation.
             </p>
-            <Button size="lg">Learn More About Yassin's Vision</Button>
+            <Button size="lg">Learn More AboutJohn Doe's Vision</Button>
           </div>
           <div>
             <Image
@@ -86,7 +86,7 @@ export default function AboutFounderPage() {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Innovative Ventures</h2>
           <p className="text-lg text-gray-700 mb-8 text-center">
-            In addition to founding Bihi Group, Yassin is the visionary behind several innovative platforms:
+            In addition to founding Bihi Group,John Doe is the visionary behind several innovative platforms:
           </p>
           <VentureShowcase />
         </div>
@@ -102,7 +102,7 @@ export default function AboutFounderPage() {
                 <CardTitle>Innovation</CardTitle>
               </CardHeader>
               <CardContent>
-                Yassin believes in harnessing cutting-edge technology and creative solutions to address Africa's unique
+               John Doe believes in harnessing cutting-edge technology and creative solutions to address Africa's unique
                 challenges and opportunities.
               </CardContent>
             </Card>
@@ -111,7 +111,7 @@ export default function AboutFounderPage() {
                 <CardTitle>Sustainability</CardTitle>
               </CardHeader>
               <CardContent>
-                At the core of Yassin's leadership is a commitment to sustainable practices that benefit both
+                At the core of John Doe's leadership is a commitment to sustainable practices that benefit both
                 communities and the environment.
               </CardContent>
             </Card>
@@ -120,7 +120,7 @@ export default function AboutFounderPage() {
                 <CardTitle>Empowerment</CardTitle>
               </CardHeader>
               <CardContent>
-                Yassin is dedicated to creating opportunities that empower individuals and communities across Africa to
+               John Doe is dedicated to creating opportunities that empower individuals and communities across Africa to
                 thrive and prosper.
               </CardContent>
             </Card>
@@ -131,7 +131,7 @@ export default function AboutFounderPage() {
       {/* Call to Action Section */}
       <section className="py-16 px-4 md:px-8 bg-primary text-primary-foreground">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Join Yassin's Vision for Africa</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">JoinJohn Doe's Vision for Africa</h2>
           <p className="text-xl mb-8">
             Be part of the journey to transform Africa into a hub of innovation, sustainability, and economic
             empowerment.

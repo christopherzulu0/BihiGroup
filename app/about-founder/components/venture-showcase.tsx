@@ -2,24 +2,25 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 const ventures = [
   {
-    name: "RoadBarks.com",
+    name: "FreightSync.io",
     description:
-      "A state-of-the-art load board platform connecting freight carriers and shippers for seamless logistics solutions.",
+      "A cutting-edge logistics platform bridging the gap between carriers and shippers for effortless freight management.",
   },
   {
-    name: "GetterHub.com",
-    description: "A platform empowering businesses and freelancers with tools for productivity and collaboration.",
+    name: "TaskHive.co",
+    description: "A dynamic workspace platform enabling teams and freelancers to organize, collaborate, and achieve their goals seamlessly.",
   },
   {
-    name: "OnionTable.com",
+    name: "StoryBridge.africa",
     description:
-      "Africa's first multilingual storytelling platform, connecting readers and writers across the continent to share diverse stories.",
+      "An inclusive platform for sharing and discovering compelling stories, connecting writers and readers across the African continent.",
   },
   {
-    name: "GetterHost.com",
-    description: "A reliable web hosting platform designed to support businesses in building their online presence.",
+    name: "SiteHaven.com",
+    description: "A dependable web hosting service designed to help businesses launch and scale their online presence with ease.",
   },
-]
+];
+
 
 export function VentureShowcase() {
   return (
